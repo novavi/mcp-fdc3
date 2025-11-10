@@ -1,10 +1,14 @@
 {
   "name": "mcp-fdc3",
   "version": "0.1.0",
-  "description": "MCP-FDC3 library and demos",
+  "description": "MCP-FDC3 library and demos. FDC3 over MCP.",
   "keywords": ["mcp", "fdc3"],
   "author": "Derek Novavi",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/novavi/mcp-fdc3.git"    
+  },
   "workspaces": {
     "packages": [
       "demos/*",
