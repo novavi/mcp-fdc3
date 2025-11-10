@@ -110,8 +110,8 @@ app.use(cors({
 // Handle GET requests (for basic testing purposes only)
 app.get('/api/chat', async (req: Request, res: Response) => {
   console.log('\n\nReceived GET /api/chat');
-  // const userPrompt = 'What is the capital of Italy?';
-  const userPrompt = 'Get trades for Alphabet';
+  // const userPrompt = 'What is the capital of France?';
+  const userPrompt = 'Get trades for apple';
   const response = await getResponse(userPrompt);
   return res.status(200).json({
     response
