@@ -1,0 +1,68 @@
+
+# mcp-fdc3 (root)
+# ---------------
+/package-lock.json
+/node_modules
+/dist
+/.env
+**/.DS_Store
+**/.vscode/*
+/**/*.log
+/SCRATCH.txt
+/TODO.txt
+
+# demos/backend-ai-agent-ts
+# -------------------------
+/demos/backend-ai-agent-ts/**/*.log
+/demos/backend-ai-agent-ts/package-lock.json
+/demos/backend-ai-agent-ts/node_modules
+/demos/backend-ai-agent-ts/dist
+/demos/backend-ai-agent-ts/.env
+
+# demos/backend-mcp-server-ts
+# ---------------------------
+/demos/backend-mcp-server-ts/**/*.log
+/demos/backend-mcp-server-ts/package-lock.json
+/demos/backend-mcp-server-ts/node_modules
+/demos/backend-mcp-server-ts/dist
+/demos/backend-mcp-server-ts/.env
+
+# demos/frontend-app-blotter
+# --------------------------
+/demos/frontend-app-blotter/**/*.log
+/demos/frontend-app-blotter/package-lock.json
+/demos/frontend-app-blotter/node_modules
+/demos/frontend-app-blotter/dist
+/demos/frontend-app-blotter/.env
+
+# demos/frontend-app-news
+# -----------------------
+/demos/frontend-app-news/**/*.log
+/demos/frontend-app-news/package-lock.json
+/demos/frontend-app-news/node_modules
+/demos/frontend-app-news/dist
+/demos/frontend-app-news/.env
+
+# demos/frontend-platform
+# -----------------------
+/demos/frontend-platform/**/*.log
+/demos/frontend-platform/package-lock.json
+/demos/frontend-platform/node_modules
+/demos/frontend-platform/dist
+/demos/frontend-platform/.env
+
+# packages/client
+# ---------------
+/packages/client/**/*.log
+/packages/client/package-lock.json
+/packages/client/node_modules
+/packages/client/dist
+/packages/client/.env
+
+# packages/server
+# ---------------
+/packages/server/**/*.log
+/packages/server/package-lock.json
+/packages/server/node_modules
+/packages/server/dist
+/packages/server/.env

@@ -1,0 +1,1 @@
+export { tickerMappingData } from './tickerMappingData';
