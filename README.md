@@ -77,6 +77,14 @@ npm i
 npm run dev
 ```
 
+Now simply point your browser to http://localhost:8080/ to run the Demo Frontend Platform.
+
+In the frontend, enter a user prompt such as:
+- "Get trades for apple"
+- "Get trades for microsoft"
+
+Then inspect your console to see logs of the FDC3 API method invocations that happen in response to your prompts!
+
 ### Frontend Blotter App
 
 TODO

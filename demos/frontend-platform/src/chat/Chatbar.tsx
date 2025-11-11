@@ -216,7 +216,7 @@ export const Chatbar: React.FC = () => {
             value={question}
             onChange={e => setQuestion(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask your question e.g. 'Get trades for apple' or 'Get trades for microsoft'. Then inspect your console to see logs of resulting FDC3 API method invocations!"
+            placeholder={'Ask your question e.g. "Get trades for apple" or "Get trades for microsoft". Then inspect your console to see logs of resulting FDC3 API method invocations!'}
             style={{ flex: 1, resize: 'none', minHeight: '80px', padding: '0.75rem', fontFamily: 'inherit', background: 'rgb(30, 41, 59)', color: '#f5f5f5', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: 12 }}
           />
           <button
