@@ -1,8 +1,14 @@
 import { useEffect, useRef, useState } from 'react';
+import { isMcpFdc3Resource, handleMcpFdc3Resource } from '../../../../packages/client/dist/mcp-fdc3-client.esm.js';
+// import { isMcpFdc3Resource, handleMcpFdc3Resource } from '@mcp-fdc3/client/dist/mcp-fdc3-client.esm.js';
 import type { Interaction } from './types';
 import { getStructuredMessage } from './getStructuredMessage';
+import { PoorMansFdc3Agent } from '../fdc3-agent/PoorMansFdc3Agent.js';
 
 const AI_AGENT_ENDPOINT = import.meta.env.VITE_AI_AGENT_ENDPOINT;
+
+//TODO - Either stub out PoorMansFdc3Agent further. Or perhaps replace with reference implementation of an FDC3 Desktop Agent from finos/FDC3 repo.
+const fdc3Agent = new PoorMansFdc3Agent();
 
 export const Chatbar: React.FC = () => {
   const [question, setQuestion] = useState('');
@@ -13,11 +19,14 @@ export const Chatbar: React.FC = () => {
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
   const sendQuestion = async (): Promise<void> => {
-    console.log('sendQuestion');
+    console.log('\n\n\n\n%csendQuestion', 'font-weight:bold;');
     const effectiveQuestion = question.trim();
     if (!effectiveQuestion || loading) {
       return;
     }
+    console.log('\neffectiveQuestion:');
+    console.log(effectiveQuestion);
+    console.log('');
     setLoading(true);
     setQuestion('');
     // Placeholder entry to kep ordering consistent (will replace response when returned)
@@ -51,19 +60,16 @@ export const Chatbar: React.FC = () => {
         const structuredMessage = getStructuredMessage(messages);
         setInteractions(prev => prev.map((it, i) => i === interactionIndex ? { ...it, response: data, finalAnswer: structuredMessage.finalAnswer, mcpResource: structuredMessage.mcpResource } : it));
 
-        console.log('extracted.mcpResource');
+        console.log('Processing of response from AI Agent is shown below');
+        console.log('structuredMessage.mcpResource:');
         console.log(structuredMessage.mcpResource);
-        if (structuredMessage.mcpResource) {
-          console.log(structuredMessage.mcpResource.uri);
-          console.log(structuredMessage.mcpResource.mimeType);
-          console.log(structuredMessage.mcpResource.text);
-          const fdc3Message = JSON.parse(structuredMessage.mcpResource.text);
-          console.log('fdc3Message');
-          console.log(fdc3Message);
+        if (isMcpFdc3Resource(structuredMessage.mcpResource)) {
+          handleMcpFdc3Resource(fdc3Agent, structuredMessage.mcpResource);
         }
       }
     } catch (e: any) {
-      setInteractions(prev => prev.map((it, i) => i === interactionIndex ? { ...it, isError: true, response: `Network error (${e.message})`, finalAnswer: 'Network error' } : it));
+      setInteractions(prev => prev.map((it, i) => i === interactionIndex ? { ...it, isError: true, response: `Error (${e.message})`, finalAnswer: 'Error processing response to question' } : it));
+      console.error(e);
     } finally {
       setLoading(false);
       textareaRef.current?.focus();
@@ -210,7 +216,7 @@ export const Chatbar: React.FC = () => {
             value={question}
             onChange={e => setQuestion(e.target.value)}
             onKeyDown={handleKeyDown}
-            placeholder="Ask your question e.g. 'Get trades for microsoft' ..."
+            placeholder="Ask your question e.g. 'Get trades for apple' or 'Get trades for microsoft'. Then inspect your console to see logs of resulting FDC3 API method invocations!"
             style={{ flex: 1, resize: 'none', minHeight: '80px', padding: '0.75rem', fontFamily: 'inherit', background: 'rgb(30, 41, 59)', color: '#f5f5f5', border: '1px solid rgba(255, 255, 255, 0.15)', borderRadius: 12 }}
           />
           <button

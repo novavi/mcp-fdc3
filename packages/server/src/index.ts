@@ -25,13 +25,13 @@ export type {
  */
 export function createGenericFdc3Resource(options: CreateFdc3ResourceOptions): Fdc3Resource {
   if (options?.uri !== Fdc3ApiUri) {
-    throw new Error(`MCP-FDC3 library: URI must be '${Fdc3ApiUri}' when content.type is '${Fdc3ApiMethodRequestPayloadType}'.`);
+    throw new Error(`MCP-FDC3 server library: URI must be '${Fdc3ApiUri}' when content.type is '${Fdc3ApiMethodRequestPayloadType}'.`);
   }
   if (options?.content?.type !== Fdc3ApiMethodRequestPayloadType) {
-    throw new Error(`MCP-FDC3 library: Invalid content.type specified: ${options.content.type}`);
+    throw new Error(`MCP-FDC3 server library: Invalid content.type specified: ${options.content.type}`);
   }
   if (typeof options?.content?.fdc3MessageJson !== 'string') {
-    throw new Error(`MCP-FDC3 library: content.fdc3MessageJson must be provided as a JSON string when content.type is '${Fdc3ApiMethodRequestPayloadType}'.`);
+    throw new Error(`MCP-FDC3 server library: content.fdc3MessageJson must be provided as a JSON string when content.type is '${Fdc3ApiMethodRequestPayloadType}'.`);
   }
 
   let resource: Fdc3MessageTextContent | Base64BlobContent;
